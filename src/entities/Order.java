@@ -1,25 +1,30 @@
 package entities;
 
-import java.util.HashMap;
+import java.util.Map;
 
 public class Order {
+    private static int orderCounter = 1;
     private int orderId;
     private Customer customer;
-    private HashMap<Product, Integer> products;
+    private Map<Product, Integer> products;
     private String status;
 
-    public Order(int orderId, Customer customer) {
-        this.orderId = orderId;
+    public Order(Customer customer, Map<Product, Integer> products) {
+        this.orderId = orderCounter++;
         this.customer = customer;
-        this.products = new HashMap<>();
+        this.products = products;
         this.status = "Pending";
     }
 
-    public void addProduct(Product product, int quantity) {
-        products.put(product, quantity);
+    public int getOrderId() { return orderId; }
+    public String getStatus() { return status; }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
-    public void updateStatus(String status) {
-        this.status = status;
+    @Override
+    public String toString() {
+        return "Order [ID: " + orderId + ", Customer: " + customer.username + ", Status: " + status + "]";
     }
 }

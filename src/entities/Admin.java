@@ -1,20 +1,40 @@
 package entities;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Admin extends User {
-    private ArrayList<Product> managedProducts;
+    private List<Product> products;
 
     public Admin(int userId, String username, String email) {
         super(userId, username, email);
-        this.managedProducts = new ArrayList<>();
+        this.products = new ArrayList<>();
     }
 
     public void addProduct(Product product) {
-        managedProducts.add(product);
+        products.add(product);
+        System.out.println("Product added: " + product);
     }
 
-    public void removeProduct(Product product) {
-        managedProducts.remove(product);
+    public void removeProduct(int productId) {
+        products.removeIf(product -> product.getProductId() == productId);
+        System.out.println("Product removed successfully!");
+    }
+
+    public void viewProducts() {
+        if (products.isEmpty()) {
+            System.out.println("No products available.");
+        } else {
+            products.forEach(System.out::println);
+        }
+    }
+
+    public List<Product> getProducts() {
+        return products;
+    }
+
+    @Override
+    public void displayInfo() {
+        System.out.println("Admin [ID: " + userId + ", Name: " + username + ", Email: " + email + "]");
     }
 }

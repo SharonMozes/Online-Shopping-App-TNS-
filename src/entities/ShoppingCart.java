@@ -1,9 +1,10 @@
 package entities;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class ShoppingCart {
-    private HashMap<Product, Integer> items;
+    private Map<Product, Integer> items;
 
     public ShoppingCart() {
         this.items = new HashMap<>();
@@ -13,6 +14,21 @@ public class ShoppingCart {
         items.put(product, items.getOrDefault(product, 0) + quantity);
     }
 
-    public HashMap<Product, Integer> getItems() { return items; }
-}
+    public Map<Product, Integer> getItems() {
+        return items;
+    }
 
+    public void clearCart() {
+        items.clear();
+    }
+
+    public void viewCart() {
+        if (items.isEmpty()) {
+            System.out.println("Shopping cart is empty.");
+        } else {
+            items.forEach((product, quantity) ->
+                System.out.println(product + " | Quantity: " + quantity)
+            );
+        }
+    }
+}

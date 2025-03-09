@@ -1,6 +1,6 @@
 package entities;
 
-public class User {
+public abstract class User {
     protected int userId;
     protected String username;
     protected String email;
@@ -11,8 +11,5 @@ public class User {
         this.email = email;
     }
 
-    public int getUserId() { return userId; }
-    public String getUsername() { return username; }
-    public String getEmail() { return email; }
+    public abstract void displayInfo();
 }
-
